@@ -1,0 +1,223 @@
+/* ── Section ── */
+.section {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      130deg,
+      rgba(10, 16, 28, 0.96) 0%,
+      rgba(15, 27, 46, 0.94) 42%,
+      rgba(27, 45, 38, 0.9) 100%
+    ),
+    url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80')
+      center / cover no-repeat;
+  padding-block: var(--space-3xl);
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, rgba(245, 158, 11, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 158, 11, 0.08) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.eyebrow {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+  text-align: center;
+}
+
+.heading {
+  font-size: clamp(1.375rem, 2.5vw, 1.875rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+/* ── Chart scroll wrapper ── */
+.chartWrap {
+  overflow-x: auto;
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  justify-content: center;
+  border: 1px solid rgba(245, 158, 11, 0.18);
+  border-radius: var(--radius-lg);
+  background: rgba(7, 12, 22, 0.58);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Tree reset ── */
+.tree,
+.tree ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Root ul (the single Giám đốc level) */
+.tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: max-content;
+}
+
+.tree > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── All nested child uls: horizontal row ── */
+.tree ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  /* Gap is created by parent node's ::after connector */
+  margin-top: 1.5rem;
+}
+
+/* ── Each li inside a child ul ── */
+.tree ul > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1.25rem;
+  padding-top: 1.5rem;
+  position: relative;
+  /* This border-top piece is the horizontal connector bar segment */
+  border-top: 2px solid rgba(245, 158, 11, 0.45);
+}
+
+/* Vertical line: horizontal bar → child node */
+.tree ul > li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 1.5rem;
+  background: rgba(245, 158, 11, 0.45);
+  z-index: 2;
+}
+
+/* Cover outer-left half of first-child's border-top */
+/* Makes horizontal bar start at center of first child */
+.tree ul > li:first-child::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 50%;
+  height: 3px;
+  background: rgba(9, 15, 26, 0.96);
+  z-index: 1;
+}
+
+/* Cover outer-right half of last-child's border-top */
+/* Makes horizontal bar end at center of last child */
+.tree ul > li:last-child::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  right: 0;
+  height: 3px;
+  background: rgba(9, 15, 26, 0.96);
+  z-index: 1;
+}
+
+/* Single child: no horizontal bar, no covers */
+.tree ul > li:only-child {
+  border-top: none;
+}
+.tree ul > li:only-child::after {
+  display: none;
+}
+
+/* ── Connector: parent node → child ul ── */
+/* Vertical line drawn below any node that has children */
+.tree li:has(> ul) > .node {
+  position: relative;
+}
+
+.tree li:has(> ul) > .node::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 1.5rem;
+  background: rgba(245, 158, 11, 0.45);
+}
+
+/* ── Node boxes ── */
+.node {
+  display: inline-block;
+  padding: 0.5rem 0.875rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-sm);
+  color: rgba(255, 255, 255, 0.86);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.5;
+  white-space: nowrap;
+  min-width: 7.5rem;
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.node:not(.rootNode):not(.midNode):hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(245, 158, 11, 0.36);
+  transform: translateY(-2px);
+}
+
+/* Root node — Giám đốc */
+.rootNode {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-brand-dark);
+  font-weight: 700;
+  font-size: var(--fs-base);
+  padding: 0.75rem 1.625rem;
+  min-width: 9rem;
+  box-shadow: 0 8px 22px rgba(245, 158, 11, 0.4);
+}
+
+/* Mid-level nodes — department heads */
+.midNode {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.28);
+  color: rgba(245, 158, 11, 0.9);
+  font-weight: 600;
+  min-width: 8.5rem;
+}
+
+.midNode:hover {
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(245, 158, 11, 0.45);
+}

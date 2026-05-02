@@ -1,0 +1,202 @@
+/* ── Section ── */
+.section {
+  padding-block: var(--space-3xl);
+  position: relative;
+  overflow: hidden;
+  /* Fallback while image loads */
+  background: var(--color-brand-dark);
+}
+
+/* Background image (Next.js fill) */
+.bgImage {
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+/* Dark overlay: deep navy + subtle amber glow */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 60% 50% at 50% 100%,
+      rgba(245, 158, 11, 0.1) 0%,
+      transparent 65%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(10, 14, 26, 0.88) 0%,
+      rgba(10, 14, 26, 0.82) 100%
+    );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(245, 158, 11, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 158, 11, 0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%);
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.eyebrow {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+  text-align: center;
+}
+
+.heading {
+  font-size: clamp(1.5rem, 3vw, 2.125rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+.lead {
+  font-size: var(--fs-md);
+  color: rgba(255, 255, 255, 0.76);
+  max-width: 58ch;
+  line-height: 1.75;
+  margin-inline: auto;
+  margin-bottom: var(--space-2xl);
+  text-align: center;
+}
+
+/* ── Feature grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+}
+
+/* ── Feature card ── */
+@keyframes featureFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.featureCard {
+  background: rgba(9, 16, 28, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md, 12px);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+  animation: featureFadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--stagger, 0) * 0.1s + 0.1s);
+}
+
+.featureCard:hover {
+  background: rgba(9, 16, 28, 0.68);
+  border-color: rgba(245, 158, 11, 0.38);
+}
+
+.featureIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-sm);
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.featureIcon svg {
+  width: 1.375rem;
+  height: 1.375rem;
+}
+
+.featureTitle {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.featureText {
+  font-size: var(--fs-sm);
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── Thank-you block ── */
+.thankYou {
+  position: relative;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.14), rgba(245, 158, 11, 0.08));
+  border: 1px solid rgba(245, 158, 11, 0.32);
+  border-radius: var(--radius-md, 12px);
+  padding: clamp(1.75rem, 4vw, 2.5rem) clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+  animation: featureFadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both;
+}
+
+.quoteIcon {
+  display: block;
+  width: 2.25rem;
+  height: auto;
+  color: rgba(245, 158, 11, 0.3);
+  margin: 0 auto var(--space-md);
+}
+
+.quoteIcon svg {
+  width: 100%;
+  height: auto;
+}
+
+.thankYouText {
+  font-size: clamp(var(--fs-base), 1.5vw, var(--fs-md));
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.8;
+  max-width: 62ch;
+  margin: 0 auto var(--space-md);
+}
+
+.thankYouText strong {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.thankYouSig {
+  font-size: var(--fs-sm);
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+  margin: 0;
+}

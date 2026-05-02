@@ -1,0 +1,205 @@
+.section {
+  padding-block: clamp(3rem, 6vw, 5rem);
+  background-color: var(--color-bg);
+}
+
+/* ── Section Header ───────────────────── */
+
+.header {
+  text-align: center;
+  max-width: 640px;
+  margin-inline: auto;
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-xs);
+}
+
+.heading {
+  font-size: var(--fs-h2);
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-sm);
+}
+
+.subheading {
+  font-size: var(--fs-body);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* ── Grid ─────────────────────────────── */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* ── Card — image as full background ─── */
+
+.card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.cardImage {
+  object-fit: cover;
+  transition: transform 0.7s ease;
+  z-index: 0;
+}
+
+.card:hover .cardImage {
+  transform: scale(1.06);
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 12, 20, 0.92) 0%,
+    rgba(10, 12, 20, 0.55) 45%,
+    rgba(10, 12, 20, 0.15) 100%
+  );
+  z-index: 1;
+  transition: background var(--transition-base);
+}
+
+.card:hover .cardOverlay {
+  background: linear-gradient(
+    to top,
+    rgba(10, 12, 20, 0.96) 0%,
+    rgba(10, 12, 20, 0.65) 50%,
+    rgba(10, 12, 20, 0.2) 100%
+  );
+}
+
+/* ── Card body — overlaid text ──────── */
+
+.cardBody {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+
+  transform: translateY(6px);
+  transition: transform var(--transition-base);
+}
+
+.card:hover .cardBody {
+  transform: translateY(0);
+}
+
+.cardTitle {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: 1.3;
+}
+
+.cardDesc {
+  font-size: var(--fs-sm);
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.6;
+
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.35s ease;
+}
+
+.card:hover .cardDesc {
+  max-height: 6rem;
+  opacity: 1;
+}
+
+/* ── Link — outline → fill left-to-right ── */
+
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-start;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+
+  color: var(--color-white);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  background-color: transparent;
+
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color var(--transition-base), border-color var(--transition-base);
+}
+
+.cardLink::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-white);
+  transform: translateX(-101%);
+  transition: transform 0.38s cubic-bezier(0.76, 0, 0.24, 1);
+  z-index: -1;
+}
+
+.cardLink:hover {
+  color: var(--color-primary);
+  border-color: var(--color-white);
+}
+
+.cardLink:hover::before {
+  transform: translateX(0);
+}
+
+.cardLinkArrow {
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
+.cardLink:hover .cardLinkArrow {
+  transform: translateX(3px);
+}
+
+/* ── Responsive ───────────────────────── */
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card {
+    aspect-ratio: 4 / 3;
+  }
+
+  .cardDesc {
+    max-height: none;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

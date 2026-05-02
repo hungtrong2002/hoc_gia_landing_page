@@ -1,0 +1,203 @@
+/* ─── Section ─── */
+.section {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--space-3xl);
+  background:
+    linear-gradient(
+      160deg,
+      rgba(11, 18, 32, 0.92) 0%,
+      rgba(18, 31, 53, 0.86) 45%,
+      rgba(30, 50, 43, 0.88) 100%
+    ),
+    url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1920&q=80')
+      center / cover no-repeat;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 8% 10%, rgba(155, 177, 134, 0.22), transparent 38%),
+    radial-gradient(circle at 86% 88%, rgba(184, 163, 132, 0.2), transparent 42%);
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.heading {
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: #f4f8f1;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-sm);
+}
+
+.subheading {
+  font-size: var(--fs-md);
+  color: rgba(235, 242, 233, 0.8);
+  max-width: 48ch;
+  margin-inline: auto;
+}
+
+/* ─── Timeline wrapper ─── */
+.timelineWrapper {
+  position: relative;
+  --line-progress: 0;
+}
+
+.trackLine {
+  position: absolute;
+  inset-inline-start: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    rgba(184, 209, 164, 0.3),
+    rgba(184, 209, 164, 0.5),
+    rgba(184, 209, 164, 0.3)
+  );
+  overflow: hidden;
+}
+
+.trackLine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform-origin: top;
+  transform: scaleY(var(--line-progress));
+  background: linear-gradient(
+    to bottom,
+    rgba(214, 230, 201, 0.95),
+    rgba(184, 209, 164, 1),
+    rgba(214, 230, 201, 0.95)
+  );
+}
+
+/* ─── List & items ─── */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr 2.5rem 1fr;
+  align-items: start;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition:
+    opacity var(--transition-slow),
+    transform var(--transition-slow);
+}
+
+.item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.itemLeft  .card { grid-column: 1; grid-row: 1; text-align: right; }
+.itemLeft  .dot  { grid-column: 2; grid-row: 1; }
+.itemLeft::after { content: ''; grid-column: 3; grid-row: 1; }
+
+.itemRight .card { grid-column: 3; grid-row: 1; text-align: left; }
+.itemRight .dot  { grid-column: 2; grid-row: 1; }
+.itemRight::before { content: ''; grid-column: 1; grid-row: 1; }
+
+/* ─── Dot ─── */
+.dot {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--color-brand-accent);
+  border: 3px solid rgba(12, 20, 34, 0.95);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(184, 209, 164, 0.78);
+  justify-self: center;
+  align-self: start;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+/* ─── Card ─── */
+.card {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  box-shadow: 0 18px 42px rgba(3, 8, 18, 0.22);
+  border: 1px solid rgba(184, 209, 164, 0.4);
+  transition: box-shadow var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.year {
+  display: inline-block;
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  color: var(--color-brand-primary);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.milestoneTitle {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.milestoneDesc {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* ─── Mobile: single-column stacked ─── */
+@media (max-width: 640px) {
+  .trackLine {
+    inset-inline-start: 1.5rem;
+  }
+
+  .item {
+    grid-template-columns: 3rem 1fr;
+  }
+
+  .itemLeft .card,
+  .itemRight .card {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+  }
+
+  .itemLeft .dot,
+  .itemRight .dot {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+  }
+
+  .itemLeft::after,
+  .itemRight::before {
+    display: none;
+  }
+}

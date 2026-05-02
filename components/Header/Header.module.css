@@ -1,0 +1,241 @@
+/* ── Fixed header ───────────────────────── */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: transparent;
+  padding-block: 1.5rem;
+  transition:
+    background-color 0.35s ease,
+    backdrop-filter 0.35s ease,
+    padding-block 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.scrolled {
+  background-color: rgba(8, 10, 18, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding-block: 0.75rem;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* ── Inner row ─────────────────────────── */
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* ── Logo ──────────────────────────────── */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logoImg {
+  width: auto;
+  height: clamp(50px, 4vw, 100px);
+  object-fit: contain;
+}
+
+/* ── Desktop nav ───────────────────────── */
+
+.nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+}
+
+.navLink {
+  position: relative;
+  display: block;
+  padding: 0.4rem 0.75rem;
+  font-size: var(--fs-body);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.82);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0.75rem;
+  right: 0.75rem;
+  height: 2px;
+  background-color: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.navLink:hover {
+  color: var(--color-white);
+}
+
+.navLink:hover::after {
+  transform: scaleX(1);
+}
+
+/* ── Phone CTA ─────────────────────────── */
+
+.phone {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1rem;
+  border: 1.5px solid var(--color-accent);
+  border-radius: 999px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.phone:hover {
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+}
+
+/* ── Hamburger ─────────────────────────── */
+
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.burger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-white);
+  border-radius: 2px;
+  transform-origin: center;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.burgerOpen span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.burgerOpen span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.burgerOpen span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile drawer ─────────────────────── */
+
+.drawer {
+  position: fixed;
+  inset: 0;
+  top: 0;
+  z-index: 99;
+  background-color: rgba(8, 10, 18, 0.97);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.drawerOpen {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.drawerList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.drawerLink {
+  display: block;
+  padding: 0.85rem 2rem;
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
+  font-weight: 600;
+  color: var(--color-white);
+  text-decoration: none;
+  text-align: center;
+  transition: color var(--transition-fast);
+}
+
+.drawerLink:hover {
+  color: var(--color-accent);
+}
+
+.drawerPhone {
+  margin-top: 1.5rem;
+  padding: 0.65rem 2rem;
+  border: 1.5px solid var(--color-accent);
+  border-radius: 999px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  text-decoration: none;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.drawerPhone:hover {
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+}
+
+/* ── Responsive ─────────────────────────── */
+
+@media (max-width: 768px) {
+  .nav,
+  .phone {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+}

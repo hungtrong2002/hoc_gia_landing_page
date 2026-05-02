@@ -1,0 +1,141 @@
+.section {
+  padding-block: var(--space-3xl);
+  background: var(--color-brand-cream);
+}
+
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.heading {
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--color-brand-dark);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-2xl);
+  text-align: center;
+}
+
+/* ─── Two-column sticky layout ─── */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+/* ─── Sticky image column ─── */
+.imageCol {
+  position: sticky;
+  top: calc(80px + var(--space-xl)); /* header height + gap */
+}
+
+.stickyImage {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--color-brand-sage-muted);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 60%,
+    rgba(17, 24, 39, 0.3) 100%
+  );
+}
+
+/* ─── Steps column ─── */
+.stepsCol {
+  padding-block: var(--space-lg);
+}
+
+.stepList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.stepItem {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: var(--space-md);
+  padding-block: var(--space-xl);
+  border-bottom: 1px solid var(--color-brand-sage-muted);
+  position: relative;
+}
+
+.stepItem:last-child {
+  border-bottom: none;
+}
+
+/* Vertical connector line between steps */
+.stepItem:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 1.375rem;
+  top: calc(var(--space-xl) + 2.5rem);
+  bottom: 0;
+  width: 2px;
+  background: var(--color-brand-sage-muted);
+}
+
+.stepNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--color-brand-primary);
+  color: #fff;
+  font-size: var(--fs-sm);
+  font-weight: 800;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.stepContent {
+  padding-top: 0.25rem;
+}
+
+.stepTitle {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--color-brand-dark);
+  margin-bottom: 0.5rem;
+}
+
+.stepDesc {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  line-height: 1.75;
+}
+
+/* ─── Mobile: single column ─── */
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .imageCol {
+    position: static;
+  }
+
+  .stickyImage {
+    aspect-ratio: 16 / 9;
+  }
+}

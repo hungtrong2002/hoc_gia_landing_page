@@ -1,0 +1,25 @@
+.section {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+/* ─── Skeleton ─── */
+.skeleton {
+  width: 100%;
+  height: clamp(280px, 45vw, 420px);
+  background: linear-gradient(
+    90deg,
+    var(--color-brand-cream) 25%,
+    rgba(var(--color-brand-sage-muted-rgb, 200, 210, 200), 0.5) 50%,
+    var(--color-brand-cream) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-brand-sage-muted);
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

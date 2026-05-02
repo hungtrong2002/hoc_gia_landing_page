@@ -1,0 +1,195 @@
+/* ─── Section ─── */
+.section {
+  padding-block: var(--space-3xl);
+  background: var(--color-brand-sage-muted);
+}
+
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.heading {
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--color-brand-dark);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-sm);
+}
+
+.subheading {
+  font-size: var(--fs-md);
+  color: var(--color-text-muted);
+  max-width: 52ch;
+  margin-inline: auto;
+}
+
+/* ─── Tabs wrapper ─── */
+.tabsWrapper {
+  background: #fff;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+/* ─── Tab list ─── */
+.tabList {
+  display: flex;
+  border-bottom: 2px solid var(--color-brand-sage-muted);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tabList::-webkit-scrollbar {
+  display: none;
+}
+
+.tabBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: max-content;
+  padding: var(--space-md) var(--space-lg);
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+  white-space: nowrap;
+}
+
+.tabBtn:hover {
+  color: var(--color-brand-primary);
+  background: var(--color-brand-sage-muted);
+}
+
+.tabBtn:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: -2px;
+}
+
+.tabActive {
+  color: var(--color-brand-primary);
+  border-bottom-color: var(--color-brand-primary);
+  font-weight: 700;
+}
+
+.tabIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+}
+
+.tabIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── Panel ─── */
+.panel {
+  padding: var(--space-xl) var(--space-2xl);
+}
+
+/* ─── Commitment list ─── */
+.commitmentList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.commitmentItem {
+  border-left: 3px solid var(--color-brand-sage);
+  padding-left: var(--space-lg);
+}
+
+.badgeRow {
+  margin-bottom: 0.75rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--color-brand-sage-muted);
+  border-radius: 999px;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--color-brand-primary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+}
+
+.commitmentStandard {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--color-brand-dark);
+  margin-bottom: 0.5rem;
+}
+
+.commitmentDesc {
+  font-size: var(--fs-base);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-bottom: var(--space-md);
+  max-width: 72ch;
+}
+
+/* ─── Point list ─── */
+.pointList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.point {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  font-size: var(--fs-sm);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+.pointDot {
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--color-brand-accent);
+  margin-top: 0.4em;
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 600px) {
+  .panel {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .tabBtn {
+    padding: var(--space-sm) var(--space-md);
+  }
+}

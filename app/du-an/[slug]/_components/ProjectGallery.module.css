@@ -1,0 +1,120 @@
+.section {
+  padding-block: var(--space-3xl);
+  background: var(--color-brand-cream);
+}
+
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.heading {
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--color-brand-dark);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-xl);
+}
+
+/* ─── Asymmetric CSS Grid ─── */
+.gallery {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 280px 200px 200px;
+  gap: 0.75rem;
+}
+
+/* Hero spans first 2 rows and first 2 columns */
+.figureHero {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+}
+
+/* Second image (first of rest) — tall, spans 2 rows in col 3 */
+.figureTall {
+  grid-column: 3;
+  grid-row: 1 / 3;
+}
+
+/* ─── Figure base ─── */
+.figure {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-brand-sage-muted);
+  cursor: pointer;
+}
+
+.figure:hover .image {
+  transform: scale(1.04);
+}
+
+.figure:hover .caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Image ─── */
+.image {
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Caption overlay ─── */
+.caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.75rem var(--space-md);
+  background: linear-gradient(to top, rgba(17, 24, 39, 0.75) 0%, transparent 100%);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--fs-xs);
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition:
+    opacity var(--transition-base),
+    transform var(--transition-base);
+}
+
+/* ─── Mobile: single column ─── */
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .figureHero {
+    grid-column: 1 / 3;
+    grid-row: auto;
+    aspect-ratio: 16 / 10;
+  }
+
+  .figureTall {
+    grid-column: auto;
+    grid-row: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .figure:not(.figureHero) {
+    aspect-ratio: 4 / 3;
+  }
+
+  .caption {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .figureHero,
+  .figureTall {
+    grid-column: 1;
+  }
+}

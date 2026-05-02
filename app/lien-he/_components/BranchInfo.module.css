@@ -1,0 +1,127 @@
+.wrapper {
+  background: var(--color-brand-cream);
+  border: 1px solid var(--color-brand-sage-muted);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+/* ─── Tabs ─── */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-brand-sage-muted);
+}
+
+.tab {
+  flex: 1;
+  padding: 0.875rem 1rem;
+  background: transparent;
+  border: none;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.tab:hover {
+  background: rgba(0, 0, 0, 0.03);
+  color: var(--color-brand-dark);
+}
+
+.tabActive {
+  color: var(--color-brand-primary);
+  background: #fff;
+  box-shadow: inset 0 -2px 0 var(--color-brand-primary);
+}
+
+/* ─── Panel ─── */
+.panel {
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+/* ─── Address dl ─── */
+.address {
+  font-style: normal;
+}
+
+.dl {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+}
+
+.dt {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--color-brand-primary);
+  margin-top: 0.1rem;
+}
+
+.dt svg {
+  width: 100%;
+  height: 100%;
+}
+
+.dd {
+  margin: 0;
+  font-size: var(--fs-sm);
+  color: var(--color-text-body, var(--color-brand-dark));
+  line-height: 1.6;
+}
+
+.link {
+  color: var(--color-brand-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.link:hover {
+  color: var(--color-brand-dark);
+  text-decoration: underline;
+}
+
+/* ─── Social links ─── */
+.socials {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-brand-sage-muted);
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.4rem 1rem;
+  background: #fff;
+  border: 1px solid var(--color-brand-sage-muted);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-brand-dark);
+  text-decoration: none;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.socialLink:hover {
+  background: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  color: #fff;
+}
+
+.socialLink svg {
+  width: 1rem;
+  height: 1rem;
+}

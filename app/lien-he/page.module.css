@@ -1,0 +1,246 @@
+/* ─── Hero ─── */
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 100dvh;
+  display: flex;
+  align-items: flex-end;
+  background: #0a0e1a;
+}
+
+.heroImg {
+  object-fit: cover;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(17, 24, 39, 0.9) 0%,
+    rgba(17, 24, 39, 0.5) 55%,
+    rgba(17, 24, 39, 0.2) 100%
+  );
+  z-index: 1;
+}
+
+.heroInner {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+  padding-block-start: calc(var(--space-2xl) + 80px);
+  padding-bottom: var(--space-2xl);
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* ─── Eyebrow ─── */
+.heroEyebrow {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-brand-sage);
+  margin-bottom: var(--space-sm);
+}
+
+.heroTitle {
+  font-size: clamp(2rem, 5vw + 0.5rem, 3.75rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.heroSubtitle {
+  font-size: clamp(1rem, 1.5vw + 0.1rem, 1.25rem);
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 52ch;
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ─── Hero entrance animation ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.heroEyebrow {
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.1s forwards;
+}
+
+.heroTitle {
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.25s forwards;
+}
+
+.heroSubtitle {
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.4s forwards;
+}
+
+/* ─── Content section ─── */
+.contentSection {
+  padding-block: clamp(3rem, 6vw, 5rem);
+  background: #fff;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+/* ─── Two-column grid ─── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.formCol,
+.infoCol {
+  opacity: 0;
+  animation: revealUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.infoCol {
+  animation-delay: 0.12s;
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.colHeading {
+  font-size: clamp(1.25rem, 2vw + 0.25rem, 1.75rem);
+  font-weight: 700;
+  color: var(--color-brand-dark);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.colSubtitle {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+
+.mapWrap {
+  margin-top: 1.5rem;
+  opacity: 0;
+  animation: revealUp 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.24s forwards;
+}
+
+/* ─── Quick contact cards ─── */
+.quickCards {
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+  background: var(--color-brand-cream);
+}
+
+.sectionHeading {
+  font-size: clamp(1.25rem, 2vw + 0.25rem, 1.75rem);
+  font-weight: 700;
+  color: var(--color-brand-dark);
+  letter-spacing: -0.02em;
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: clamp(1rem, 2vw, 1.375rem);
+  background: #fff;
+  border: 1px solid var(--color-brand-sage-muted);
+  border-radius: var(--radius-xl);
+  text-decoration: none;
+  transition: box-shadow var(--transition-base), transform var(--transition-base), border-color var(--transition-base);
+  opacity: 0;
+  animation: revealUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.cards .card:nth-child(1) { animation-delay: 0.04s; }
+.cards .card:nth-child(2) { animation-delay: 0.1s; }
+.cards .card:nth-child(3) { animation-delay: 0.16s; }
+.cards .card:nth-child(4) { animation-delay: 0.22s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .formCol,
+  .infoCol,
+  .mapWrap,
+  .card {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  border-color: var(--color-brand-primary);
+}
+
+.cardIcon {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--color-brand-sage-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brand-primary);
+}
+
+.cardIcon svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.cardBody strong {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--color-brand-dark);
+  white-space: nowrap;
+}
+
+.cardBody span {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
